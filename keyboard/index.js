@@ -44,6 +44,10 @@ const keyboard = {
 		this.elements.wrapper.appendChild(os);
 		this.elements.wrapper.appendChild(lang);
 		document.body.appendChild(this.elements.wrapper);
+
+		this.works(textArea.value, currentValue => {
+			textArea.value = currentValue;
+		});
 	},
 
 	createBtns() {
@@ -71,6 +75,7 @@ const keyboard = {
 			
 
 			btnElement.setAttribute("type", 'button');
+			btnElement.dataset.name = key;
 			btnElement.classList.add('btn');
 			btnElement.isLetterButton = false;
 
@@ -238,6 +243,26 @@ const keyboard = {
 		
 		return fragment;
 	},
+
+	fireEvent(name) { 
+		if (typeof this.properties[name] == "function") { 
+			this.properties[name](this.properties.value);
+		}
+	},
+
+	toggleCapsLock() {
+		this.properties.capsLock = !this.properties.capsLock;
+		for (const key of this.elements.btns) { 
+			if (key.isLetterButton) { 
+				key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
+			}
+		}
+	},
+
+	works(initialValue, oninput) { 
+		this.properties.value = initialValue || "";
+		this.properties.oninput = oninput;
+	}
 }
 
 window.addEventListener('DOMContentLoaded', function () {
