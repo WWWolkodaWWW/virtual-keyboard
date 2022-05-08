@@ -55,33 +55,34 @@ const keyboard = {
 
 		const enLayout = [
 			"`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace",
-			"Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "Del",
+			"Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "Delete",
 			"CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter",
-			"lShift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "ArrowUp", "rShift",
-			"lCtrl", "Win", "lAlt", "space", "rAlt", "ArrowLeft", "ArrowDown", "ArrowRight", "rCtrl"
+			"ShiftLeft", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "ArrowUp", "ShiftRight",
+			"ControlLeft", "Win", "AltLeft", "Space", "AltRight", "ArrowLeft", "ArrowDown", "ArrowRight", "ControlRight"
 		];
 
 		const ruLayout = [
 			"ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace",
-			"Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\", "Del",
+			"Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\", "Delete",
 			"CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "Enter",
-			"lShift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "&uArr", "rShift",
-			"lCtrl", "Win", "lAlt", "space", "rAlt", "&lArr;", "&dArr;", "&rArr;", "rCtrl"
+			"ShiftLeft", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "ArrowUp", "ShiftRight",
+			"ControlLeft", "Win", "AltLeft", "Space", "AltRight", "ArrowLeft", "ArrowDown", "ArrowRight", "ControlRight"
 		];
 
 		enLayout.forEach(key => {
 			const btnElement = document.createElement('button');
-			const insertLIneBreak = ["Backspace", "Del", "Enter", "rShift"].indexOf(key) !== -1;
+			const insertLIneBreak = ["Backspace", "Delete", "Enter", "ShiftRight"].indexOf(key) !== -1;
 			
 
 			btnElement.setAttribute("type", 'button');
-			btnElement.dataset.name = key;
+			btnElement.dataset.name = 'Key' + key.toUpperCase();
 			btnElement.classList.add('btn');
 			btnElement.isLetterButton = false;
 
 			switch (key) { 
 				case "Backspace":
 					btnElement.classList.add('medium');
+					btnElement.dataset.name = key;
 					btnElement.innerText = "Backspace";
 					btnElement.addEventListener('click', () => {
 						this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
@@ -89,8 +90,9 @@ const keyboard = {
 					});
 					break;
 				
-				case "Del":
+				case "Delete":
 					btnElement.innerText = "Del";
+					btnElement.dataset.name = key;
 					btnElement.addEventListener('click', () => {
 						
 						this.fireEvent("oninput");
@@ -100,6 +102,7 @@ const keyboard = {
 				case "Enter":
 					btnElement.classList.add('medium');
 					btnElement.innerText = "Enter";
+					btnElement.dataset.name = key;
 					btnElement.addEventListener('click', () => {
 						this.properties.value += "\n";
 						this.fireEvent("oninput");
@@ -108,6 +111,7 @@ const keyboard = {
 				
 				case "Tab":
 					btnElement.classList.add('medium');
+					btnElement.dataset.name = key;
 					btnElement.innerText = "Tab";
 					btnElement.addEventListener('click', () => {
 						this.properties.value += "\t";
@@ -116,8 +120,9 @@ const keyboard = {
 					});
 					break;
 				
-				case "space":
+				case "Space":
 					btnElement.classList.add('large');
+					btnElement.dataset.name = key;
 					
 					btnElement.addEventListener('click', () => {
 						this.properties.value += " ";
@@ -127,6 +132,7 @@ const keyboard = {
 				
 				case "CapsLock":
 					btnElement.classList.add('medium', 'on');
+					btnElement.dataset.name = key;
 					btnElement.innerText = "CapsLock";
 					btnElement.addEventListener('click', () => {
 						this.toggleCapsLock();
@@ -134,47 +140,52 @@ const keyboard = {
 					});
 					break;
 				
-				case "rShift":
+				case "ShiftRight":
 					btnElement.classList.add('medium');
+					btnElement.dataset.name = key;
 					btnElement.innerText = "Shift";
 					btnElement.addEventListener('click', () => {
 						
 					});
 					break;
 				
-				case "lShift":
+				case "ShiftLeft":
 					btnElement.classList.add('medium');
+					btnElement.dataset.name = key;
 					btnElement.innerText = "Shift";
-					btnElement.btnDescription = "lShift";
 					btnElement.addEventListener('click', () => {
 						
 					});
 
 					break;
 				
-				case "rCtrl":
+				case "ControlRight":
 					btnElement.textContent = "Ctrl";
+					btnElement.dataset.name = key;
 					btnElement.addEventListener('click', () => {
 						
 					});
 					break;
 				
-				case "lCtrl":
+				case "ControlLeft":
 					btnElement.innerText = "Ctrl";
+					btnElement.dataset.name = key;
 					btnElement.addEventListener('click', () => {
 						
 					});
 					break;
 				
-				case "rAlt":
+				case "AltRight":
 					btnElement.innerText = "Alt";
+					btnElement.dataset.name = key;
 					btnElement.addEventListener('click', () => {
 						
 					});
 					break;
 				
-				case "lAlt":
+				case "AltLeft":
 					btnElement.innerText = "Alt";
+					btnElement.dataset.name = key;
 					btnElement.addEventListener('click', () => {
 						
 					});
@@ -182,6 +193,7 @@ const keyboard = {
 				
 				case "Win":
 					btnElement.innerText = "Win";
+					btnElement.dataset.name = key;
 					btnElement.addEventListener('click', () => {
 						
 					});
@@ -217,22 +229,142 @@ const keyboard = {
 				case "ArrowRight":
 					btnElement.classList.add('arrow');
 					btnElement.innerHTML = "&rArr;";
-
+					
 					btnElement.addEventListener('click', () => {
 						
 					});
 					break;
-
+				
+				case "`":
+					btnElement.dataset.name = "Backquote";
+					btnElement.innerText = "`";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+					break;
+				
+				case "1":
+					btnElement.dataset.name = "Digit1";
+					btnElement.innerText = "1";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+					break;
+				
+				case "2":
+					btnElement.dataset.name = "Digit2";
+					btnElement.innerText = "2";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "3":
+					btnElement.dataset.name = "Digit3";
+					btnElement.innerText = "3";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "4":
+					btnElement.dataset.name = "Digit4";
+					btnElement.innerText = "4";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "5":
+					btnElement.dataset.name = "Digit5";
+					btnElement.innerText = "5";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "6":
+					btnElement.dataset.name = "Digit6";
+					btnElement.innerText = "6";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "7":
+					btnElement.dataset.name = "Digit7";
+					btnElement.innerText = "7";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "8":
+					btnElement.dataset.name = "Digit8";
+					btnElement.innerText = "8";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "9":
+					btnElement.dataset.name = "Digit9";
+					btnElement.innerText = "9";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "0":
+					btnElement.dataset.name = "Digit0";
+					btnElement.innerText = "0";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "-":
+					btnElement.dataset.name = "Minus";
+					btnElement.innerText = "-";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+				break;
+				case "=":
+					btnElement.dataset.name = "Equal";
+					btnElement.innerText = "=";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+					break;
+				
 				default:
-						btnElement.textContent = key.toLowerCase();
-
-						btnElement.addEventListener('click', () => {
-							this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
-							this.fireEvent("oninput");
-						});
-						btnElement.isLetterButton = true;
-						break;
-				}
+					btnElement.textContent = key.toLowerCase();
+					
+					btnElement.addEventListener('click', () => {
+						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						this.fireEvent("oninput");
+					});
+					btnElement.isLetterButton = true;
+					break;				
+			}
 
 			fragment.appendChild(btnElement);
 
@@ -263,6 +395,10 @@ const keyboard = {
 		this.properties.value = initialValue || "";
 		this.properties.oninput = oninput;
 	}
+}
+
+document.onkeydown = function (event) { 
+	console.log(event.code);
 }
 
 window.addEventListener('DOMContentLoaded', function () {
