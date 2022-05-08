@@ -83,17 +83,151 @@ const keyboard = {
 						this.fireEvent("oninput");
 					});
 					break;
-
-			default:
-					btnElement.textContent = key.toLowerCase();
-
+				
+				case "Del":
+					btnElement.innerText = "Del";
 					btnElement.addEventListener('click', () => {
-						this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+						
 						this.fireEvent("oninput");
 					});
-					btnElement.isLetterButton = true;
 					break;
-			}
+				
+				case "Enter":
+					btnElement.classList.add('medium');
+					btnElement.innerText = "Enter";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += "\n";
+						this.fireEvent("oninput");
+					});
+					break;
+				
+				case "Tab":
+					btnElement.classList.add('medium');
+					btnElement.innerText = "Tab";
+					btnElement.addEventListener('click', () => {
+						this.properties.value += "\t";
+						// this.properties.value += "    ";
+						this.fireEvent("oninput");
+					});
+					break;
+				
+				case "space":
+					btnElement.classList.add('large');
+					
+					btnElement.addEventListener('click', () => {
+						this.properties.value += " ";
+						this.fireEvent("oninput");
+					});
+					break;
+				
+				case "CapsLock":
+					btnElement.classList.add('medium', 'on');
+					btnElement.innerText = "CapsLock";
+					btnElement.addEventListener('click', () => {
+						this.toggleCapsLock();
+						btnElement.classList.toggle('active', this.properties.capsLock);
+					});
+					break;
+				
+				case "rShift":
+					btnElement.classList.add('medium');
+					btnElement.innerText = "Shift";
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+				
+				case "lShift":
+					btnElement.classList.add('medium');
+					btnElement.innerText = "Shift";
+					btnElement.btnDescription = "lShift";
+					btnElement.addEventListener('click', () => {
+						
+					});
+
+					break;
+				
+				case "rCtrl":
+					btnElement.textContent = "Ctrl";
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+				
+				case "lCtrl":
+					btnElement.innerText = "Ctrl";
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+				
+				case "rAlt":
+					btnElement.innerText = "Alt";
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+				
+				case "lAlt":
+					btnElement.innerText = "Alt";
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+				
+				case "Win":
+					btnElement.innerText = "Win";
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+				
+				case "ArrowUp":
+					btnElement.classList.add('arrow');
+					btnElement.innerHTML = "&uArr;";
+
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+				
+				case "ArrowDown":
+					btnElement.classList.add('arrow');
+					btnElement.innerHTML = "&dArr;";
+
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+			
+				case "ArrowLeft":
+					btnElement.classList.add('arrow');
+					btnElement.innerHTML = "&lArr;";
+
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+			
+				case "ArrowRight":
+					btnElement.classList.add('arrow');
+					btnElement.innerHTML = "&rArr;";
+
+					btnElement.addEventListener('click', () => {
+						
+					});
+					break;
+
+				default:
+						btnElement.textContent = key.toLowerCase();
+
+						btnElement.addEventListener('click', () => {
+							this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+							this.fireEvent("oninput");
+						});
+						btnElement.isLetterButton = true;
+						break;
+				}
 
 			fragment.appendChild(btnElement);
 
