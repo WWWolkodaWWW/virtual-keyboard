@@ -60,7 +60,6 @@ textarea:focus {
 	border-radius: 1rem;
 	height: 4.5rem;	
 	width: 4%;
-	/* max-width: 9rem; */
 	margin: 0.3rem;
 	font-size: 1.8rem;
 	display: inline-flex;
@@ -112,9 +111,6 @@ textarea:focus {
 	text-align: center;
 }
 
-/* .small {
-	width: 4%;
-} */
 .medium {
 	width: 12%;
 }
