@@ -398,7 +398,36 @@ const keyboard = {
 }
 
 document.onkeydown = function (event) { 
-	console.log(event.code);
+
+	let button = document.querySelector('.keyboard .btn[data-name="' + event.code + '"]');
+	if (event.code === "CapsLock") {
+		let isCapsLockOn = event.getModifierState('CapsLock');
+		if (isCapsLockOn) { 
+			button.classList.add('active');
+		}
+
+	} else { 
+		button.classList.add('active');
+	}
+	event.preventDefault();	
+	let selectionStart = document.querySelector('.keyboard-screen').selectionStart;
+	button.click();
+}
+
+document.onkeyup = function (event) { 
+
+	let button = document.querySelector('.keyboard .btn[data-name="' + event.code + '"]');
+	if (event.code === "CapsLock") {
+		let isCapsLockOn = event.getModifierState('CapsLock');
+		if (!isCapsLockOn) { 
+			button.classList.remove('active');
+		}
+			
+
+	} else { 
+		button.classList.remove('active');
+	}
+	event.preventDefault();
 }
 
 window.addEventListener('DOMContentLoaded', function () {
